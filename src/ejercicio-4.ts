@@ -1,4 +1,16 @@
-function moveZeros(vector: Array<number>): Array<number> {
+/**
+ * Mueve los ceros de un vector a sus posiciones finales
+ * sin alterar los otros valores del vector
+ * @param vector vector de números
+ * @returns vector de números con los ceros al final
+ * Ejemplo de uso:
+ * ```
+ * console.log(moveZeros([1, 0, 1, 2, 0, 1, 3]));
+ * console.log(moveZeros([0, 0, 1, 0]));
+ * ```
+ */
+
+export function moveZeros(vector: Array<number>): Array<number> {
   let vector_aux: Array<number> = [];
   let contador: number = 0;
   for (let indice: number = 0; indice < vector.length; indice ++) {
@@ -18,3 +30,4 @@ function moveZeros(vector: Array<number>): Array<number> {
 }
 
 console.log(moveZeros([1, 0, 1, 2, 0, 1, 3]));
+console.log(moveZeros([0, 0, 1, 0]));

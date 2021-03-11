@@ -10,7 +10,7 @@
  * ```
  */
 
-function decodeResistor(_param: Array<string>): Array<number> | number {
+export function decodeResistor(_param: Array<string>): Array<number> | number {
   let vector_s: Array<string> = ["negro","marron","rojo","naranja","amarillo","verde","azul","violeta","gris","blanco"];
   let codigo_1: number = 0;
   let codigo_2: number = 0;

@@ -1,11 +1,22 @@
-let cadena_01: string = "hola";
-let cadena_02: string = "lado";
+/**
+ * Calcula si un vector con cadenas de caracteres está
+ * encadenado o no, la última letra o las anteriores
+ * de la anterior cadena, deben coincidir con los caracteres
+ * del principio de la siguiente cadena.
+ * siguiente cadena
+ * @param vector un vector de cadenas de caracteres
+ * @returns las palabras encadenadas, o un mensaje de error
+ * Ejemplo de uso:
+ * ```
+ * console.log(meshArray(['allow', 'lowering', 'ringmaster', 'terror'])); -> correcto
+ * console.log(meshArray(['allow', 'lowering', 'ringmaster', 'e'])); -> error
+ * ```
+ */
 
-let cadena_1_aux: string = "";
-let cadena_2_aux: string = "";
 
-
-function meshArray(vector: Array<string>) {
+export function meshArray(vector: Array<string>) {
+  let cadena_1_aux: string = "";
+  let cadena_2_aux: string = "";
   if (vector.length === 0) {
     return "El vector está vacío";
   }
@@ -30,8 +41,8 @@ function meshArray(vector: Array<string>) {
     for (let indice = 0; indice < vector.length; indice ++) {
       let tamanio: number = vector[indice].length;
       // console.log(`${tamanio}`);
-     for (let indice_1: number = tamanio; indice_1 > 0; indice_1 --) {
-      cadena_1_aux = vector[indice][indice_1 - 1] + cadena_1_aux;
+      for (let indice_1: number = tamanio; indice_1 > 0; indice_1 --) {
+        cadena_1_aux = vector[indice][indice_1 - 1] + cadena_1_aux;
         // console.log(`${cadena_1_aux}`);
         if (vector[indice + 1]) {
           if (vector[indice + 1].startsWith(cadena_1_aux) ) {
@@ -55,3 +66,4 @@ function meshArray(vector: Array<string>) {
 }
 
 console.log(meshArray(['allow', 'lowering', 'ringmaster', 'terror']));
+console.log(meshArray(['allow', 'lowering', 'ringmaster', 'e']));
