@@ -37,7 +37,7 @@ export function meshArray(vector: Array<string>) {
   if (vector.length > 2) {
     let centinela: boolean = true;
     let cadena_entera = "";
-    let contador_negativo: number = 0
+    let contador_negativo: number = 0;
     for (let indice = 0; indice < vector.length; indice ++) {
       let tamanio: number = vector[indice].length;
       // console.log(`${tamanio}`);
