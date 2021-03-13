@@ -483,105 +483,167 @@ Y tenemos que continuar hasta que alcanzamos a la coordenad X en el punto de des
   }
   ```
   
-  Lo mismo realizamos para el eje Y, solo que ahora los valores serán "North" o "South".
+Lo mismo realizamos para el eje Y, solo que ahora los valores serán "North" o "South".
   
-  ```TypeScript  
-  let indice_Y: number = punto_1.coordenada_Y;
+```TypeScript  
+let indice_Y: number = punto_1.coordenada_Y;
 
-  while (indice_Y != punto_2.coordenada_Y) {
-    if (indice_Y < punto_2.coordenada_Y) {
-      indice_Y += 1;
-      cadena_aux.push("North");
-      // console.log(`${cadena_aux}`);
-    }
-    if (indice_Y > punto_2.coordenada_Y) {
-      indice_Y -= 1;
-      cadena_aux.push("South");
-      // console.log(`${cadena_aux}`);
-    }
+while (indice_Y != punto_2.coordenada_Y) {
+  if (indice_Y < punto_2.coordenada_Y) {
+    indice_Y += 1;
+    cadena_aux.push("North");
+    // console.log(`${cadena_aux}`);
   }
-  
-  ```
-  
-  Por último, retornamos el vector, de cadenas de caracteres.
-  
-  ## __Documentación con *TypeDoc*__
-  Es una buena práctica documentar el desarrollo de nuestro código para que otras personas puedan entenderlo y mentenerlo, así
-  como nosotros mismos, que somos los que escribimos el código fuente.
-  
-  En TypeScript, existe una herramineta llamada *TypeDoc* que permite generar de forma cómoda documentación que luego se transforma
-  en *html*, facilitando su uso.
-  
-  Lo primero que deberemos hacer será instalar dicha herramienta con el siguiente comando:
-  
-  ```
-  $ npm install --save-dev typedoc
-  ```
-  
-  Instalamos el paquete como dependencia de desarrollo, sería conveniente descativar estas reglas del linter (*.eslint.json*)
-  
-  ```json
-  "rules": {
-       "require-jsdoc": "off",
-       "valid-jsdoc": "off"
+  if (indice_Y > punto_2.coordenada_Y) {
+    indice_Y -= 1;
+    cadena_aux.push("South");
+    // console.log(`${cadena_aux}`);
   }
-  ```
-  Ya que no vamos a utlizar *jsdoc*, como herramienta de generación de código.
+}
   
-  Lo sigeuinte será la configuración de typedoc, para ello, creamos un fichero en la raíz de nuestro proyecto llamado *typedoc.json*
-  en el que indicamos los ficheros de entrada de la documentación, y especificamos la salida, es decir, donde se alojará la documentación.
+```
   
-  {
-     "entryPoints": [
+Por último, retornamos el vector, de cadenas de caracteres.
+  
+## __Documentación con *TypeDoc*__
+Es una buena práctica documentar el desarrollo de nuestro código para que otras personas puedan entenderlo y mentenerlo, así
+como nosotros mismos, que somos los que escribimos el código fuente.
+  
+En TypeScript, existe una herramineta llamada *TypeDoc* que permite generar de forma cómoda documentación que luego se transforma
+en *html*, facilitando su uso.
+  
+Lo primero que deberemos hacer será instalar dicha herramienta con el siguiente comando:
+  
+```
+$ npm install --save-dev typedoc
+```
+  
+Instalamos el paquete como dependencia de desarrollo, sería conveniente descativar estas reglas del linter (*.eslint.json*)
+  
+```json
+"rules": {
+     "require-jsdoc": "off",
+     "valid-jsdoc": "off"
+}
+```
+Ya que no vamos a utlizar *jsdoc*, como herramienta de generación de código.
+  
+Lo sigeuinte será la configuración de typedoc, para ello, creamos un fichero en la raíz de nuestro proyecto llamado *typedoc.json*
+en el que indicamos los ficheros de entrada de la documentación, y especificamos la salida, es decir, donde se alojará la documentación.
+  
+{
+   "entryPoints": [
       "nombre del fichero"
-     ],
-     "out": "./documentacion"
-  }
+   ],
+   "out": "./documentacion"
+}
   
-  Como se ve en el ejemplo, la salida se genera en el directorio *documentacion*.
+Como se ve en el ejemplo, la salida se genera en el directorio *documentacion*.
   
-  A partir de este punto, ya podemos empezar a realizar anotaciones, esto se realiza de la siguiente forma:
+A partir de este punto, ya podemos empezar a realizar anotaciones, esto se realiza de la siguiente forma:
   
-  ```TypeScript
-  /**
- * Calcula la __suma__ de __una__ o __dos__ __resistencias__
- * la funcion __ignora_ el paso de mas de tres valores
- * @param _param vector de cadenas de caracteres
- * @returns un vector con los códigos de las resistencias o un número
- * Ejemplo de invocación:
- * ```
- * let vector_cad: Array<string> = ["negro", "marron"];
- * console.log(decodeResistor(vector_cad));
- * ```
- */
+```TypeScript
+/**
+* Calcula la __suma__ de __una__ o __dos__ __resistencias__
+* la funcion __ignora_ el paso de mas de tres valores
+* @param _param vector de cadenas de caracteres
+* @returns un vector con los códigos de las resistencias o un número
+* Ejemplo de invocación:
+* ```
+* let vector_cad: Array<string> = ["negro", "marron"];
+* console.log(decodeResistor(vector_cad));
+* ```
+*/
+```
+Vemos que iniciamos los comentarios con *slash* y doble asterisco, y los terminamos con asterisco y *slash*.
   
-  ```
-  Vemos que iniciamos los comentarios con *slash* y doble almohadilla, y los terminamos con alomhadicha y *slash*.
+También observamos un poco su estructura, en un principio escribimos qué hace, en este caso, la función, y vemos
+que automáticamente *typescript* nos ha generado *@param*, y *@returns* que indican que podemos hacer comentarios
+para los parámetros que recibe la función, y lo que devuelve, o escribir algún ejemplo.
   
-  También observamos un poco su estructura, en un principio escribimos qué hace, en este caso, la función, y vemos
-  que automáticamente *typescript* nos ha generado *@param*, y *@returns* que indican que podemos hacer comentarios
-  para los parámetros que recibe la función, y lo que devuelve, o escribir algún ejemplo.
+Para ejecutar typedoc, podemos escribir directamente en la terminal, typedoc, o configurar el *package.json*:
   
-  Para ejecutar typedoc, podemos escribir directamente en la terminal, typedoc, o configurar el *package.json*:
+```
+  "scripts": {
+  "test": "mocha",
+  "start": "tsc-watch --onSuccess \"node dist/ejercicio-1.js\"",
+  "docs": "typedoc"
+},
+```
+Así podemos escribir *npm run docs* y debería funcionar.
   
-  ```
-    "scripts": {
+Debajo podemos observar una captura de pantalla, al hacer clic derecho, y abrir con [live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) el fichero *index.html* que en nuestro caso teníamos en el directorio generado por typedoc(documentacion):![Imagen typedoc abierto](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct04-arrays-tuples-enums-alu0101254678/blob/master/img/typedoc_abierto.png?raw=true)
+  
+Como vemos, con la extensión live server, permitimos abrir ficheros de html en nuestro navegador, y en concreto, vemos como 
+se ha procesado también el fichero *README.md*, y a la derecha observamos como podemos hacer click para ver la 
+documentación de cada uno de los ejercicios realizados.
+  
+## __Desarrollo de pruebas con *Mocha* y *Chai*__
+Otra de las buenas prácticas es el desarrollo dirigido por pruebas, el objetivo es probar la funcionalida de nuestro 
+código, para ello hay numerosas herramientas.
+  
+Nosostros vamos a emplear *Mocha*, que es un framework que cumple con este propósito, y *chai*, que es la librería que
+se integra con *Mocha*, y que permite hacer afirmaciones del tipo *expect* y *asser*.
+  
+Lo primero que deberemos hacer será instalar estos paquetes, para ello nos dirigimos a la terminal y ejecutamos el siguiente comando:
+  
+```
+npm install --save-dev mocha chai @types/mocha @ types/chai ts-node
+```
+Ahora configuramos el fichero que deberemos crear, .mocha.json, para la configuración de mocha, en la raíz de nuestro proyecto.
+
+```
+{
+  "extension": ["ts"],
+  "spec": "tests/**/*.spec.ts",
+  "require": "ts-node/register"
+}
+```
+
+Lo que estamos indicando es la extensión de los ficheros a los que se harán las pruebas, donde se alojan esos ficheros, y lo que se 
+usa para llevar a cabo la ejecución de las pruebas.
+
+A partir de este punto, ya podemos escribir algunas pruebas, para ello, creamos el directorio *tests*, en la raíz, y creamos, por ejemplo
+el fichero ejercicio-1.spec.ts, para las pruebas que recordamos del primer ejericicio, este podría ser un ejemplo de contenido:
+
+```TypeScript
+import 'mocha';
+import {expect} from 'chai';
+import {decodeResistor} from '../src/ejercicio-1';
+
+describe('Test que calcula las resistencias', () => {
+  it('decodeResistor("negro", "marron") devuelve [0,1]', () => {
+    expect(decodeResistor(["negro", "marron"])).to.have.same.members([0, 1]);
+  });
+  it('decodeResistor("hola") devuelve -1', () => {
+    expect(decodeResistor(["hola"])).to.be.equal(-1);
+  });
+});
+```
+Lo primero que hacemos es importar los módulos necesarios, *mocha* y *expect*, elegimos *expect*, que es el entorno que vamos a emplear,
+así como la función *decodeResistor* que recordamos que era la que teníamos que implementar en el ejercicio 1.
+
+Para describir un conjunto de pruebas, hacemos uso de *describe*, que tiene un mensaje y una *arrow function*, y para escribir una prueba
+en concreto se hace con *it*, que recibe los mismos parámetros que la anterior.
+
+Una prueba, en nuestro caso, la definimos con *expect*, se trata de una expectativa, podríamos haber elegido *should*, u otro diferente,
+para más información, podemos consultar en la biblioografía.
+
+Por último, pasamos a la ejecución de las pruebas, en el fichero *package.json*, escribimos lo siguiente(para no tener que estar
+escribiendo parámetros a la ejecución en la terminal):
+
+```TypeScript
+
+  "scripts": {
     "test": "mocha",
     "start": "tsc-watch --onSuccess \"node dist/ejercicio-1.js\"",
     "docs": "typedoc"
   },
-  ```
-  Así podemos escribir *npm run docs* y debería funcionar.
-  
-  
-  
-  
-  
-  
-  
-  ## __Desarrollo de pruebas con *Mocha* y *Chai*__
-  
+```
+Hemos creado una rutina llamada *test* en el que solamente ejecutando *npm tun test*, se realiza la ejecución de las pruebas.
+
+
   ## __Conclusiones__
-  
+ 
   ## __Bibliografía__
   
