@@ -506,6 +506,78 @@ Y tenemos que continuar hasta que alcanzamos a la coordenad X en el punto de des
   Por último, retornamos el vector, de cadenas de caracteres.
   
   ## __Documentación con *TypeDoc*__
+  Es una buena práctica documentar el desarrollo de nuestro código para que otras personas puedan entenderlo y mentenerlo, así
+  como nosotros mismos, que somos los que escribimos el código fuente.
+  
+  En TypeScript, existe una herramineta llamada *TypeDoc* que permite generar de forma cómoda documentación que luego se transforma
+  en *html*, facilitando su uso.
+  
+  Lo primero que deberemos hacer será instalar dicha herramienta con el siguiente comando:
+  
+  ```
+  $ npm install --save-dev typedoc
+  ```
+  
+  Instalamos el paquete como dependencia de desarrollo, sería conveniente descativar estas reglas del linter (*.eslint.json*)
+  
+  ```json
+  "rules": {
+       "require-jsdoc": "off",
+       "valid-jsdoc": "off"
+  }
+  ```
+  Ya que no vamos a utlizar *jsdoc*, como herramienta de generación de código.
+  
+  Lo sigeuinte será la configuración de typedoc, para ello, creamos un fichero en la raíz de nuestro proyecto llamado *typedoc.json*
+  en el que indicamos los ficheros de entrada de la documentación, y especificamos la salida, es decir, donde se alojará la documentación.
+  
+  {
+     "entryPoints": [
+      "nombre del fichero"
+     ],
+     "out": "./documentacion"
+  }
+  
+  Como se ve en el ejemplo, la salida se genera en el directorio *documentacion*.
+  
+  A partir de este punto, ya podemos empezar a realizar anotaciones, esto se realiza de la siguiente forma:
+  
+  ```TypeScript
+  /**
+ * Calcula la __suma__ de __una__ o __dos__ __resistencias__
+ * la funcion __ignora_ el paso de mas de tres valores
+ * @param _param vector de cadenas de caracteres
+ * @returns un vector con los códigos de las resistencias o un número
+ * Ejemplo de invocación:
+ * ```
+ * let vector_cad: Array<string> = ["negro", "marron"];
+ * console.log(decodeResistor(vector_cad));
+ * ```
+ */
+  
+  ```
+  Vemos que iniciamos los comentarios con *slash* y doble almohadilla, y los terminamos con alomhadicha y *slash*.
+  
+  También observamos un poco su estructura, en un principio escribimos qué hace, en este caso, la función, y vemos
+  que automáticamente *typescript* nos ha generado *@param*, y *@returns* que indican que podemos hacer comentarios
+  para los parámetros que recibe la función, y lo que devuelve, o escribir algún ejemplo.
+  
+  Para ejecutar typedoc, podemos escribir directamente en la terminal, typedoc, o configurar el *package.json*:
+  
+  ```
+    "scripts": {
+    "test": "mocha",
+    "start": "tsc-watch --onSuccess \"node dist/ejercicio-1.js\"",
+    "docs": "typedoc"
+  },
+  ```
+  Así podemos escribir *npm run docs* y debería funcionar.
+  
+  
+  
+  
+  
+  
   
   ## __Desarrollo de pruebas con *Mocha* y *Chai*__
   
