@@ -8,7 +8,7 @@
  * Los métodos son ligeramente distintos.
  */
 
-class Punto_General {
+export class Punto_General {
   coordenada_X: number;
   coordenada_Y: number;
   coordenada_Z: number;
