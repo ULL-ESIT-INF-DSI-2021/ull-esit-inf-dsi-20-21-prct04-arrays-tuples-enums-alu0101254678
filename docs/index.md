@@ -530,13 +530,15 @@ Ya que no vamos a utlizar *jsdoc*, como herramienta de generación de código.
   
 Lo sigeuinte será la configuración de typedoc, para ello, creamos un fichero en la raíz de nuestro proyecto llamado *typedoc.json*
 en el que indicamos los ficheros de entrada de la documentación, y especificamos la salida, es decir, donde se alojará la documentación.
-  
+
+```json  
 {
    "entryPoints": [
       "nombre del fichero"
    ],
    "out": "./documentacion"
 }
+```
   
 Como se ve en el ejemplo, la salida se genera en el directorio *documentacion*.
   
@@ -563,7 +565,7 @@ para los parámetros que recibe la función, y lo que devuelve, o escribir algú
   
 Para ejecutar typedoc, podemos escribir directamente en la terminal, typedoc, o configurar el *package.json*:
   
-```
+```json
   "scripts": {
   "test": "mocha",
   "start": "tsc-watch --onSuccess \"node dist/ejercicio-1.js\"",
@@ -572,7 +574,9 @@ Para ejecutar typedoc, podemos escribir directamente en la terminal, typedoc, o 
 ```
 Así podemos escribir *npm run docs* y debería funcionar.
   
-Debajo podemos observar una captura de pantalla, al hacer clic derecho, y abrir con [live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) el fichero *index.html* que en nuestro caso teníamos en el directorio generado por typedoc(documentacion):![Imagen typedoc abierto](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct04-arrays-tuples-enums-alu0101254678/blob/master/img/typedoc_abierto.png?raw=true)
+Debajo podemos observar una captura de pantalla, al hacer clic derecho, y abrir con [live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) el fichero *index.html* que en nuestro caso teníamos en el directorio generado por typedoc(documentacion):
+
+![Imagen typedoc abierto](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct04-arrays-tuples-enums-alu0101254678/blob/master/img/typedoc_abierto.png?raw=true)
   
 Como vemos, con la extensión live server, permitimos abrir ficheros de html en nuestro navegador, y en concreto, vemos como 
 se ha procesado también el fichero *README.md*, y a la derecha observamos como podemos hacer click para ver la 
@@ -592,7 +596,7 @@ npm install --save-dev mocha chai @types/mocha @ types/chai ts-node
 ```
 Ahora configuramos el fichero que deberemos crear, .mocha.json, para la configuración de mocha, en la raíz de nuestro proyecto.
 
-```
+```json
 {
   "extension": ["ts"],
   "spec": "tests/**/*.spec.ts",
@@ -632,7 +636,7 @@ para más información, podemos consultar en la biblioografía.
 Por último, pasamos a la ejecución de las pruebas, en el fichero *package.json*, escribimos lo siguiente(para no tener que estar
 escribiendo parámetros a la ejecución en la terminal):
 
-```TypeScript
+```json
 
   "scripts": {
     "test": "mocha",
@@ -641,6 +645,9 @@ escribiendo parámetros a la ejecución en la terminal):
   },
 ```
 Hemos creado una rutina llamada *test* en el que solamente ejecutando *npm tun test*, se realiza la ejecución de las pruebas.
+Debajo podemos ver un ejemplo de ejecución.
+
+![Captura de test](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct04-arrays-tuples-enums-alu0101254678/blob/master/img/captura_ejemplo_test.png?raw=true)
 
 
   ## __Conclusiones__
