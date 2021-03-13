@@ -259,3 +259,257 @@ export function multiplyAll(vector: Array<number>, valor: number):Array<number> 
   return vector_resultado;
 }
 ```
+
+## __Ejercicio - 6: Puntos bi-dimensionales__
+En este ejercicio, hemos de representar con algún tipo de dato, un punto en el espacio de dos coordenadas,
+esto es, en los ejes cartesianos, y se definirán las funciones necesarias para:
+
+* Sumar y restas dos puntos coordenada a coordenada.
+* Realizar el producto cartesiano entre un punto y un número.
+* Calcular la distancia euclídea entre dos puntos.
+
+En mi caso, he decidido declarar una clase, ya que me encuentro más familiarizado con el concepto, sin embargo también
+se podría haber hecho uso de literales, aunque con una clase que represente a un punto, se pueden resolver los ejercicios
+planteados.
+
+```TypeScript
+export class Punto {
+  coordenada_X: number;
+  coordenada_Y: number;
+
+  constructor(coordenada_X: number, coordenada_Y: number) {
+    this.coordenada_X = coordenada_X;
+    this.coordenada_Y = coordenada_Y;
+  }
+```
+
+Como vemos, la clase solamente necesita dos atributos, que son la coordenada X y la coordenada Y, así como el constructor
+para inicializarlos.
+
+Pasamos a comentar los métodos, la suma y la resta son prácticamente iguales, se realiza una operación coordenada a 
+coordenada y se devulve un punto.
+
+```
+  sum_Puntos(punto_2: Punto): Punto {
+    let punto: Punto = new Punto(this.coordenada_X + punto_2.coordenada_X, this.coordenada_Y + punto_2.coordenada_Y);
+    return punto;
+  }
+  
+    res_Puntos(punto_1: Punto): Punto {
+    let punto: Punto = new Punto(this.coordenada_X - punto_1.coordenada_X, this.coordenada_Y - punto_1.coordenada_Y);
+    return punto;
+  }
+```
+
+Con la palabra reservada *this* estamos accediendo a los atributos del objeto que está llamando al método, luego creamos un punto
+que tenga las coordenadas con las operaciones y lo retornamos. Algo parecido sucede en el producto escalar:
+
+```
+  prod_Escalar(valor: number): number {
+    let resultado: number = ((this.coordenada_X * valor) + (this.coordenada_Y * valor));
+    return resultado;
+  }
+```
+
+Sin embargo, si nos fijamos, por la definición de producto escalar, se obtiene un valor numérico.
+
+La distancia euclídea se rige por la siguiente [fórmula](https://es.wikipedia.org/wiki/Distancia_euclidiana):
+
+[Imagen formula distancia euclidea](https://wikimedia.org/api/rest_v1/media/math/render/svg/92d49b1b717fc1b18de1b7bebddc78d56b9ac79c)
+
+Aquí tenemos el código que lo resuelve:
+
+```
+  dist_Eucl(punto_2: Punto): number {
+    let primera_coordenada: number = (this.coordenada_X - punto_2.coordenada_X) * (this.coordenada_X - punto_2.coordenada_X);
+    let segunda_coordenada: number = (this.coordenada_Y - punto_2.coordenada_Y) * (this.coordenada_Y - punto_2.coordenada_Y);
+    return Math.sqrt( (primera_coordenada + segunda_coordenada) );
+  }
+```
+Podríamos haber utilizado *Math.pow*, sin embargo, también se puede realizar la multiplicación de un número por si mismo.
+
+## __Ejercicio - 7: Puntos n-dimensionales__
+Este ejercicio está emparejado con el anterior, se trata de crear algún tipo de dato que consiga representar un punto, sin 
+embargo, esta clase de punto tendrá más de dos coordenadas, como mínimo 3, y como máximo las que el usuario indique.
+
+Volvemos a crear una clase, sin embargo su comportamiento será algo diferente al de la clase *Punto*, la llamaremos *Punto_General*
+y tendrá tres atributos sencillos que serán las coordenadas X, Y y Z, además tendrá un valor numérico como atributo que servirá
+para determinar las dimensiones del punto en cuestión.
+
+Por último, un vector de valores numéricos, que serán las coordenadas en sí, posteriores a las tres primeras, esto es, si el vector
+tiene estos valores, [4,2,1] estaremos hablando de que la coordenada en la cuarta dimensión es 4, en la quinta dimensión toma el valor 1
+y en la sexta dimensión, 1, por lo tanto, *dimensión* será igual a 6.
+
+```
+export class Punto_General {
+  coordenada_X: number;
+  coordenada_Y: number;
+  coordenada_Z: number;
+  dimensiones: number;
+  vector_coor_d: Array<number>;
+
+  constructor(coordenada_X: number, coordenada_Y: number, coordenada_Z: number, dimensiones: number, vector_coor_d: Array<number>) {
+    this.coordenada_X = coordenada_X;
+    this.coordenada_Y = coordenada_Y;
+    this.coordenada_Z = coordenada_Z;
+    console.assert(dimensiones === 3 + vector_coor_d.length);
+    this.dimensiones = dimensiones;
+    this.vector_coor_d = vector_coor_d;
+  }
+```
+
+La suma y la resta se realizan de la misma forma, sin embargo, no sabemos las dimensiones a priori hasta que nos lo diga el usuario,
+por lo tanto tenemos que iterar hasta alcanzar el tamaño del vector que recibimos, además, no podemos sumar o resta dos puntos, si no
+tienen las mismas dimensiones.
+
+```TypeScript
+  sum_puntos(punto_2: Punto_General): Punto_General {
+    let suma_coordenada_X: number = this.coordenada_X + punto_2.coordenada_X;
+    let suma_coordenada_Y: number = this.coordenada_Y + punto_2.coordenada_Y;
+    let suma_coordenada_Z: number = this.coordenada_Z + punto_2.coordenada_Z;
+    let vector_sum_coord: Array<number> = [];
+
+    if ( (this.dimensiones === punto_2.dimensiones) && (this.dimensiones > 3) && (punto_2.dimensiones > 3) ) {
+      for (let indice = 0; indice < this.vector_coor_d.length; indice ++) {
+        vector_sum_coord[indice] = this.vector_coor_d[indice] + punto_2.vector_coor_d[indice];
+      }
+    }
+
+    let punto: Punto_General = new Punto_General(suma_coordenada_X, suma_coordenada_Y, suma_coordenada_Z, this.dimensiones, vector_sum_coord);
+    return punto;
+  }
+```
+
+El producto escalar, también es bastante parecido al anterior, al de los puntos bidimensionales, aunque también hemos de tener
+en cuenta el vector de coordenadas de las dimensiones:
+
+```TypeScript
+  prod_escalar(valor: number): number {
+    let resultado_suma_coord: number = 0;
+
+    let resultado: number = ( (this.coordenada_X * valor) + (this.coordenada_Y * valor) + (this.coordenada_Z * valor) );
+
+    for (let indice = 0; indice < this.vector_coor_d.length; indice ++) {
+      resultado_suma_coord += this.vector_coor_d[indice] * valor;
+    }
+
+    resultado += resultado_suma_coord;
+    return resultado;
+  }
+```
+Podemos resaltar un aspecto importante, podemos iterar hasta alcanzar el tamaño del vector de coordenadas, o hasta el valor de la resta
+del atributo *dimensiones* y el valor de las coordenadas en el espacio tridimensional, 3.
+
+En la distancia euclídea también comprobamos la veracidad de las dimensiones de ambos puntos, ya que insistimos que deben de ser las mismas.
+
+```
+  dist_Eucl(punto_2: Punto_General): number {
+    let primera_coordenada: number = (this.coordenada_X - punto_2.coordenada_X) * (this.coordenada_X - punto_2.coordenada_X);
+    let segunda_coordenada: number = (this.coordenada_Y - punto_2.coordenada_Y) * (this.coordenada_Y - punto_2.coordenada_Y);
+    let tercera_coordenada: number = (this.coordenada_Z - punto_2.coordenada_Z) * (this.coordenada_Z - punto_2.coordenada_Z);
+
+    let resultado: number = 0;
+    if ( (this.dimensiones === punto_2.dimensiones) && (this.dimensiones > 3) && (punto_2.dimensiones > 3) ) {
+      for (let indice = 0; indice < this.vector_coor_d.length; indice ++) {
+        resultado += ( (this.vector_coor_d[indice] - punto_2.vector_coor_d[indice]) * (this.vector_coor_d[indice] - punto_2.vector_coor_d[indice]) );
+      }
+    }
+```
+Seguimos aplicando la misma fórmula, pero ya no para dos puntos de dos dimensiones, sino para dos puntos de n-dimensiones.
+
+## __Ejercicio - 8: El Agente__
+En este último ejercicio debemos calcular un camino entre dos puntos, que se encuentran en el espacio euclídeo, de dos dimensiones
+y retornar el camino en forma de un vector de cadenas de caracteres.Para ello hemos de tener en cuenta:
+
+* El punto inicial, o de partida.
+* El punto final, o de destino.
+* Los puntos máximos donde se podrán mover los puntos, esto es, un tablero
+representado por X e Y.
+
+La función recibe los puntos anteriores, además, podemos usar el tipo de dato anterior, *Punto*, del ejercicio 6, para representar
+los puntos.
+
+Otro aspecto importante, es que el agente, solo puede moverse en las cuatro direcciones posibles, norte, sur, este y oeste.
+Por ejemplo, si se desplaza al norte, entonces añadimos al vector de salida, "north", y si por ejemplo, vamos al este, entonces
+añadimos "east" al vector de salida.
+
+Este sería un ejemplo de la ejecución del programa:
+
+```TypeScript
+initialPoint = (1, 3)
+endPoint = (3, 5)
+agent(X, Y, initialPoint, endPoint) // => [North, North, East, East]
+```
+
+La función que definimos recibe como parámetros lo dispuesto anteriormente:
+```TypeScript
+export function agent(punto_1: Punto, punto_2: Punto, tablero: Punto ): Array<string> | string 
+```
+Puede devolver un mensaje, en el caso de que ocurra algún tipo de error, o el vector de cadenas de caracteres.
+
+Al comienzo de la función, hemos de comprobar si los puntos están "dentro" del tablero:
+```TypeScript
+  if ( (punto_1.coordenada_X <= tablero.coordenada_X) && (punto_2.coordenada_X <= tablero.coordenada_X) && (punto_1.coordenada_Y <= tablero.coordenada_Y) && (punto_2.coordenada_Y <= tablero.coordenada_Y) ) {
+    console.log(`El tablero es suficiente, y los puntos son correctos, a continuación se mustra el camino\n`);
+  } else {
+    return 'Alguna de las coordenadas de los puntos es mayor que el tablero\n';
+  }
+```
+
+Posteriormente pasamos a ir calculando la trayectoria, creamos un vector de cadenas de caracteres auxiliar y allí vamos
+introduciendo los valores, realizamos una separación, para el eje X, podemos introducir los valores *East* o *West*, esto es,
+que avanza a la derecha o a la izquierda:
+
+Y tenemos que continuar hasta que alcanzamos a la coordenad X en el punto de destino.
+
+```TypeScript
+  let indice_X: number = punto_1.coordenada_X;
+  /**
+   * Bucle while, en este caso, comprobamos en la coordenada X, vamos
+   * yendo a derecha o izquierda, segun sea el valor mayor o menor que el
+   * punto 2, el punto auxiliar al punto 2
+   */
+  while (indice_X != punto_2.coordenada_X) {
+    if (indice_X < punto_2.coordenada_X) {
+      indice_X += 1;
+      cadena_aux.push("East");
+      // console.log(`${cadena_aux}`);
+    }
+    if (indice_X > punto_2.coordenada_X) {
+      indice_X -= 1;
+      cadena_aux.push("West");
+      // console.log(`${cadena_aux}`);
+    }
+  }
+  ```
+  
+  Lo mismo realizamos para el eje Y, solo que ahora los valores serán "North" o "South".
+  
+  ```TypeScript  
+  let indice_Y: number = punto_1.coordenada_Y;
+
+  while (indice_Y != punto_2.coordenada_Y) {
+    if (indice_Y < punto_2.coordenada_Y) {
+      indice_Y += 1;
+      cadena_aux.push("North");
+      // console.log(`${cadena_aux}`);
+    }
+    if (indice_Y > punto_2.coordenada_Y) {
+      indice_Y -= 1;
+      cadena_aux.push("South");
+      // console.log(`${cadena_aux}`);
+    }
+  }
+  
+  ```
+  
+  Por último, retornamos el vector, de cadenas de caracteres.
+  
+  ## __Documentación con *TypeDoc*__
+  
+  ## __Desarrollo de pruebas con *Mocha* y *Chai*__
+  
+  ## __Conclusiones__
+  
+  ## __Bibliografía__
+  
