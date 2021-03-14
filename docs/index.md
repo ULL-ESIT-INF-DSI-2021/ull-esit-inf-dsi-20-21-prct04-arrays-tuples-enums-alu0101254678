@@ -315,7 +315,7 @@ Sin embargo, si nos fijamos, por la definición de producto escalar, se obtiene 
 
 La distancia euclídea se rige por la siguiente [fórmula](https://es.wikipedia.org/wiki/Distancia_euclidiana):
 
-[Imagen formula distancia euclidea](https://wikimedia.org/api/rest_v1/media/math/render/svg/92d49b1b717fc1b18de1b7bebddc78d56b9ac79c)
+[Imagen formula distancia euclidea](https://raw.githubusercontent.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct04-arrays-tuples-enums-alu0101254678/466218cd1fa4b782d84b6942ce833238945d89df/img/92d49b1b717fc1b18de1b7bebddc78d56b9ac79c.svg)
 
 Aquí tenemos el código que lo resuelve:
 
