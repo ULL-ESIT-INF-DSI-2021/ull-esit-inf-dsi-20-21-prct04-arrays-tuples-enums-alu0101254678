@@ -89,7 +89,7 @@ que contengan los valores codificados.
 En este ejercicio, seguimos trabajando con vectores de caracteres, sin embargo, en esta ocasión, tendremos que comprobar cada uno 
 de los valores "individuales", esto es, cada uno de los caracteres, de una posición individual del vector y del siguiente.
 
-Se tiene que realizar de esta forma, porque queremos saber si varias palabras se enceuntran encadenadas, dentro de un vector, de cadenas
+Se tiene que realizar de esta forma, porque queremos saber si varias palabras se encuentran encadenadas, dentro de un vector, de cadenas
 de caracteres, podemos entederlo mejor si observamos el siguiente ejemplo:
 
 "Llamada a la función, con ['allow', 'lower', 'return']" -> Salida: ['lowr'];
@@ -199,14 +199,14 @@ export function meanAndConcatenate(vector: Array<number | string>) {
 ```
 ## __Ejercicio - 4: Mover los Ceros al Final__
 En este ejercicio, disponemos de un vector de números, que contiene valores nulos, esto es, ceros, entonces
-debemos mover estos valores al final del vector, sin modificar previamente los que ya estaban
+debemos mover estos valores al final del vector, sin modificar previamente los que ya estaban.
 
 Por ejemplo, supongamos que tenemos el siguiente vector:
 
 [1, 4, 5, 0, 3, 2, 0] -> llamamos a la función, y ¿qué nos devuelve? -> [1, 4, 5, 3, 2, 0, 0]
 
 La función a la que llamamos, nos devolvería ese resultado, en el siguiente código, en el que hemos creado dicha función,
-hacemos uso de un vecor auxiliar, y contamos los ceros del vector orignal, y luego los "insertamos" al final del vector auxiliar.
+hacemos uso de un vecor auxiliar, y contamos los ceros del vector original, y luego los "insertamos" al final del vector auxiliar.
 
 ```TypeScript
 export function moveZeros(vector: Array<number>): Array<number> {
@@ -248,7 +248,7 @@ export function escalar(vector_auxiliar: Array<number>, valor: number) {
   return vector_def;
 }
 ```
-Esta fución, es la que llama a la función, como vemos creamos unve vector auxiliar, al que igualamos
+Esta fución, es la que llama a la función, como vemos creamos un vector auxiliar, al que igualamos
 al vector original, y el valor lo mantenemos.
 ```
 export function multiplyAll(vector: Array<number>, valor: number):Array<number> {
@@ -338,7 +338,7 @@ para determinar las dimensiones del punto en cuestión.
 
 Por último, un vector de valores numéricos, que serán las coordenadas en sí, posteriores a las tres primeras, esto es, si el vector
 tiene estos valores, [4,2,1] estaremos hablando de que la coordenada en la cuarta dimensión es 4, en la quinta dimensión toma el valor 1
-y en la sexta dimensión, 1, por lo tanto, *dimensión* será igual a 6.
+y en la sexta dimensión, 1, por lo tanto, el atributo *dimensiones* será igual a 6.
 
 ```
 export class Punto_General {
@@ -419,7 +419,7 @@ Seguimos aplicando la misma fórmula, pero ya no para dos puntos de dos dimensio
 
 ## __Ejercicio - 8: El Agente__
 En este último ejercicio debemos calcular un camino entre dos puntos, que se encuentran en el espacio euclídeo, de dos dimensiones
-y retornar el camino en forma de un vector de cadenas de caracteres.Para ello hemos de tener en cuenta:
+y retornar el camino en forma de un vector de cadenas de caracteres. Para ello hemos de tener en cuenta:
 
 * El punto inicial, o de partida.
 * El punto final, o de destino.
@@ -518,7 +518,7 @@ Lo primero que deberemos hacer será instalar dicha herramienta con el siguiente
 $ npm install --save-dev typedoc
 ```
   
-Instalamos el paquete como dependencia de desarrollo, sería conveniente descativar estas reglas del linter (*.eslint.json*)
+Instalamos el paquete como dependencia de desarrollo, sería conveniente desactivar estas reglas del linter (*.eslint.json*).
   
 ```json
 "rules": {
@@ -528,7 +528,7 @@ Instalamos el paquete como dependencia de desarrollo, sería conveniente descati
 ```
 Ya que no vamos a utlizar *jsdoc*, como herramienta de generación de código.
   
-Lo sigeuinte será la configuración de typedoc, para ello, creamos un fichero en la raíz de nuestro proyecto llamado *typedoc.json*
+Lo siguinte será la configuración de typedoc, para ello, creamos un fichero en la raíz de nuestro proyecto llamado *typedoc.json*
 en el que indicamos los ficheros de entrada de la documentación, y especificamos la salida, es decir, donde se alojará la documentación.
 
 ```json  
@@ -557,7 +557,8 @@ A partir de este punto, ya podemos empezar a realizar anotaciones, esto se reali
 * ```
 */
 ```
-Vemos que iniciamos los comentarios con *slash* y doble asterisco, y los terminamos con asterisco y *slash*.
+Vemos que iniciamos los comentarios con *slash* y doble asterisco, y los terminamos con asterisco y *slash*, este es un
+ejemplo de la función del primer ejercicio.
   
 También observamos un poco su estructura, en un principio escribimos qué hace, en este caso, la función, y vemos
 que automáticamente *typescript* nos ha generado *@param*, y *@returns* que indican que podemos hacer comentarios
@@ -574,7 +575,7 @@ Para ejecutar typedoc, podemos escribir directamente en la terminal, typedoc, o 
 ```
 Así podemos escribir *npm run docs* y debería funcionar.
   
-Debajo podemos observar una captura de pantalla, al hacer clic derecho, y abrir con [live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) el fichero *index.html* que en nuestro caso teníamos en el directorio generado por typedoc(documentacion):
+Debajo podemos observar una captura de pantalla, al hacer clic derecho, y abrir con [live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) el fichero *index.html* que en nuestro caso teníamos en el directorio generado por typedoc (documentacion):
 
 ![Imagen typedoc abierto](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct04-arrays-tuples-enums-alu0101254678/blob/master/img/typedoc_abierto.png?raw=true)
   
@@ -583,18 +584,18 @@ se ha procesado también el fichero *README.md*, y a la derecha observamos como 
 documentación de cada uno de los ejercicios realizados.
   
 ## __Desarrollo de pruebas con *Mocha* y *Chai*__
-Otra de las buenas prácticas es el desarrollo dirigido por pruebas, el objetivo es probar la funcionalida de nuestro 
+Otra de las buenas prácticas es el desarrollo dirigido por pruebas, el objetivo es probar la funcionalidad de nuestro 
 código, para ello hay numerosas herramientas.
   
 Nosostros vamos a emplear *Mocha*, que es un framework que cumple con este propósito, y *chai*, que es la librería que
-se integra con *Mocha*, y que permite hacer afirmaciones del tipo *expect* y *asser*.
+se integra con *Mocha*, y que permite hacer afirmaciones del tipo *expect* y *assert*.
   
 Lo primero que deberemos hacer será instalar estos paquetes, para ello nos dirigimos a la terminal y ejecutamos el siguiente comando:
   
 ```
 npm install --save-dev mocha chai @types/mocha @ types/chai ts-node
 ```
-Ahora configuramos el fichero que deberemos crear, .mocha.json, para la configuración de mocha, en la raíz de nuestro proyecto.
+Ahora configuramos el fichero que deberemos crear, *.mocha.json*, para la configuración de mocha, en la raíz de nuestro proyecto.
 
 ```json
 {
@@ -608,7 +609,7 @@ Lo que estamos indicando es la extensión de los ficheros a los que se harán la
 usa para llevar a cabo la ejecución de las pruebas.
 
 A partir de este punto, ya podemos escribir algunas pruebas, para ello, creamos el directorio *tests*, en la raíz, y creamos, por ejemplo
-el fichero ejercicio-1.spec.ts, para las pruebas que recordamos del primer ejericicio, este podría ser un ejemplo de contenido:
+el fichero *ejercicio-1.spec.ts*, para las pruebas que recordamos del primer ejericicio, este podría ser un ejemplo de contenido:
 
 ```TypeScript
 import 'mocha';
@@ -631,7 +632,7 @@ Para describir un conjunto de pruebas, hacemos uso de *describe*, que tiene un m
 en concreto se hace con *it*, que recibe los mismos parámetros que la anterior.
 
 Una prueba, en nuestro caso, la definimos con *expect*, se trata de una expectativa, podríamos haber elegido *should*, u otro diferente,
-para más información, podemos consultar en la biblioografía.
+para más información, podemos consultar en la bibliografía.
 
 Por último, pasamos a la ejecución de las pruebas, en el fichero *package.json*, escribimos lo siguiente(para no tener que estar
 escribiendo parámetros a la ejecución en la terminal):
@@ -649,8 +650,65 @@ Debajo podemos ver un ejemplo de ejecución.
 
 ![Captura de test](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct04-arrays-tuples-enums-alu0101254678/blob/master/img/captura_ejemplo_test.png?raw=true)
 
+## __Conclusiones__
 
-  ## __Conclusiones__
+El desarrollo de la práctica permite familiarizarnos con otros conceptos que resultan de interés en el lenguaje de programación
+TypeScript, sobre todo observamos que se ha hecho uso de los vectores en la mayoría de los ejercicios, además resaltamos que
+es posible que nos hayamos "adelantado" al emplear el concepto de "clase" y objeto en el desarrollo de los ejercicios relacionados
+con los puntos.
+
+Destacamos una serie de problemas que nos han surgido, en el desarrollo dirigido por pruebas, al intentar ejecutarlas, el compilador
+nos informaba de un error, esto es porque en las opciones del compilador no habíamos indicado que no queremos compilar los ficheros
+de prueba, así que por lo tanto, es necesario añadir estas sentencias a *tsconfig.json*:
+
+```json
+"exclude": [
+    "./tests",
+    "./node_modules",
+    "./dist"
+  ],
+```
+
+La opción *exclude*, tal y como indica, permite, ignorar ciertos ficheros que no necesitamos para su compilación a JavaScript, sin 
+embargo, nos hacemos la pregunta de porque se tiene que hacer si, si ya estamos indicando en las opciones los ficheros de entrada
+al compilador, de forma explícita.
+
+```json
+"outDir": "./dist",                              
+"rootDir": "./src",
+```
+
+Por último, el último ejercicio, quizás no se haya resuelto de la forma más satisfactoria posible, aunque sin embargo, concluimos
+que sí calcula un posible camino, aunque solo pueda desplazarse en 4 direcciones.
  
-  ## __Bibliografía__
+## __Bibliografía__
   
+* ¿Cómo se ha estructurado el proyecto?
+
+<https://ull-esit-inf-dsi-2021.github.io/typescript-theory/typescript-project-setup.html>
+
+* Documentación sobre *TypeDoc:*
+
+<https://typedoc.org/guides/installation/>
+
+* Documentación sobre *Mocha:*
+
+<https://mochajs.org/#getting-started>
+
+* Documentación sobre *Chai: (Guía de Expect:)*
+
+<https://www.chaijs.com/guide/styles/#expect>
+
+* Estructuras de datos empleadas en el desarrollo:
+
+1. ¿Cómo se usan los arrays, tuplas, y enumerados? *(TypeScript, los apuntes de clase):*
+
+<https://ull-esit-inf-dsi-2021.github.io/typescript-theory/typescript-arrays-tuples-enums.html>
+
+2. Vídeo de ejemplo de instalación y configuración de *TypeDoc* en un proyecto *TypeScript*:
+
+<https://drive.google.com/file/d/19LLLCuWg7u0TjjKz9q8ZhOXgbrKtPUme/view>
+
+3. Vídeo de ejemplo de instalación y configuración de *Mocha y Chai* en un proyecto *TypeScript*:
+
+<https://drive.google.com/file/d/1-z1oNOZP70WBDyhaaUijjHvFtqd6eAmJ/view>
